@@ -1,22 +1,18 @@
+import os
 number = 0
-padd1 = "0"                                   #It is padding for me
-padd2 = "00"                                  #It is padding for me
-padd3 = "000"                                 #It is padding for me
-fileLocation = "./Section"                    #need to setting
-filename = ""                                 #need to setting
-fileTypeInput = ".xhtml..bdb.html"            #need to setting
+fileLocation = "./"
+fileTypeInput = ".xhtml..bdb.html"
 fileTypeOutput = ".xhtml"
-while 1:
+file_list = os.listdir(fileLocation)
+for filename in file_list:
+    if filename.find(fileTypeInput) is -1:
+        continue
     number += 1
-    if number < 10:
-        filename = fileLocation + padd3 + str(number)
-    elif number < 100: 
-        filename = fileLocation + padd2 + str(number)
-    elif number < 1000: 
-        filename = fileLocation + padd1 + str(number)
+    print(filename.find('.'))
+    outputFile = filename.split('.')[0]
+    inputFile = open(filename, 'rt', encoding='UTF-8')
+    outputFile = open(outputFile + fileTypeOutput, 'w', encoding='U16')
     
-    inputFile = open(filename + fileTypeInput, 'rt', encoding='UTF-8')
-    outputFile = open(filename + fileTypeOutput, 'w', encoding='U16')
     if not inputFile: break
 
     textStart = "<body"
@@ -34,6 +30,3 @@ while 1:
     inputFile.close()
     outputFile.close()
     print(number)
-
-
-
